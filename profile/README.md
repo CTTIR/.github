@@ -18,7 +18,7 @@ CTIR develops open-source software, reproducible analysis pipelines, and educati
 
 ---
 
-## 📦 R Packages
+## R Packages
 
 > Statistical and analytical R packages developed and maintained by CTIR.
 
@@ -49,7 +49,7 @@ remotes::install_github("CTTIR/<package>")
 
 ---
 
-## 🛠 Other Software & Tools
+## Other Software & Tools
 
 | Project | Description |
 |---|---|
@@ -58,7 +58,7 @@ remotes::install_github("CTTIR/<package>")
 
 ---
 
-## 🎓 Tutorials & Courses
+## Tutorials & Courses
 
 | Repository | Description |
 |---|---|
@@ -67,7 +67,7 @@ remotes::install_github("CTTIR/<package>")
 
 ---
 
-## 📚 Resources
+## Resources
 
 | Repository | Description |
 |---|---|
@@ -75,7 +75,7 @@ remotes::install_github("CTTIR/<package>")
 
 ---
 
-## 🌐 Web Presence
+## Web Presence
 
 - **Organization website source**: [CTTIR/website](https://github.com/CTTIR/website)
 
