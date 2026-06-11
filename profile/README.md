@@ -29,6 +29,7 @@ CTIR develops open-source software, reproducible analysis pipelines, and educati
 | [**cellreportR**](https://github.com/CTTIR/cellreportR) | Statistical analysis and audit-ready reporting pipeline for routine cell-culture diagnostics with microscopic evaluation |
 | [**cuvis.r**](https://github.com/CTTIR/cuvis.r) | R bindings to the Cubert CUVIS SDK for reading, calibrating, and exporting hyperspectral camera data |
 | [**dynasimR**](https://github.com/CTTIR/dynasimR) | Domain-neutral analysis and visualisation layer for discrete-event, agent-based, and node-actor simulation outputs |
+| [**harbouR**](https://github.com/CTTIR/harbouR) | Unofficial R client for the SeaTable REST API — read, write, and sync collaborative cloud databases from R |
 | [**hexmakR**](https://github.com/CTTIR/hexmakR) | Generate polished hex sticker logos for R packages using customizable templates |
 | [**hyperspectR**](https://github.com/CTTIR/hyperspectR) | Complete pipeline for biomedical hyperspectral imaging — from raw camera data to clinical tissue oxygenation maps |
 | [**libscanR**](https://github.com/CTTIR/libscanR) | Vendor-agnostic analysis and visualisation of Laser-Induced Breakdown Spectroscopy (LIBS) data, with a biomedical-tissue focus |
@@ -39,8 +40,10 @@ CTIR develops open-source software, reproducible analysis pipelines, and educati
 | [**qviewparsR**](https://github.com/CTTIR/qviewparsR) | Pure-R parser for the binary `.Q-View` project format used in chemiluminescent multiplex ELISA plate imaging |
 | [**reflowR**](https://github.com/CTTIR/reflowR) | Custom workflowr themes and templates for reproducible research websites in R |
 | [**scimagR**](https://github.com/CTTIR/scimagR) | End-to-end pipeline for longitudinal MRI/CT analysis in spinal-cord injury research (wraps Spinal Cord Toolbox, dcm2niix) |
+| [**scimapR**](https://github.com/CTTIR/scimapR) | Reproducible, question-driven, embedding-aware science mapping — bibliometric and scientometric analysis toolkit |
 | [**segmantR**](https://github.com/CTTIR/segmantR) | Cell segmentation for histology and multiplexed tissue imaging with human-in-the-loop training (classical + Cellpose/StarDist/Mesmer) |
 | [**songR**](https://github.com/CTTIR/songR) | Native R/C++ implementation of SONG (Self-Organizing Nebulous Growths) for nonlinear dimensionality reduction |
+| [**themakR**](https://github.com/CTTIR/themakR) | Shared pkgdown template giving the CTTIR package suite a unified look — Hugo Coder palette with a light/dark toggle |
 
 Install any package with:
 
