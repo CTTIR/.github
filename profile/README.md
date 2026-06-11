@@ -25,7 +25,6 @@ CTIR develops open-source software, reproducible analysis pipelines, and educati
 | Package | Description |
 |---|---|
 | [**bambamR**](https://github.com/CTTIR/bambamR) | Streamlined RNA-seq analysis pipelines — from count matrices to publication-ready results |
-| [**bamflowR**](https://github.com/CTTIR/bamflowR) | End-to-end RNA-seq and DNA-seq pipeline (STAR, BWA-MEM2, GATK, featureCounts, fastp) with a Shiny front-end |
 | [**cellreportR**](https://github.com/CTTIR/cellreportR) | Statistical analysis and audit-ready reporting pipeline for routine cell-culture diagnostics with microscopic evaluation |
 | [**cuvis.r**](https://github.com/CTTIR/cuvis.r) | R bindings to the Cubert CUVIS SDK for reading, calibrating, and exporting hyperspectral camera data |
 | [**dynasimR**](https://github.com/CTTIR/dynasimR) | Domain-neutral analysis and visualisation layer for discrete-event, agent-based, and node-actor simulation outputs |
