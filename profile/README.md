@@ -33,7 +33,7 @@ CTIR develops open-source software, reproducible analysis pipelines, and educati
 | [**hexmakR**](https://github.com/CTTIR/hexmakR) | Generate polished hex sticker logos for R packages using customizable templates |
 | [**hyperspectR**](https://github.com/CTTIR/hyperspectR) | Complete pipeline for biomedical hyperspectral imaging — from raw camera data to clinical tissue oxygenation maps |
 | [**libscanR**](https://github.com/CTTIR/libscanR) | Vendor-agnostic analysis and visualisation of Laser-Induced Breakdown Spectroscopy (LIBS) data, with a biomedical-tissue focus |
-| [**lstparsR**](https://github.com/CTTIR/lstparsR) | Parser for NONMEM `.lst` output files — extracts THETA / OMEGA / SIGMA estimates into tidy data frames for population PK/PD analysis |
+| [**lstparsR**](https://github.com/Clinical-Pharmacy-Saarland-University/lstparsR) | Parser for NONMEM `.lst` output files — extracts THETA / OMEGA / SIGMA estimates into tidy data frames for population PK/PD analysis |
 | [**molpathR**](https://github.com/CTTIR/molpathR) | Unified molecular-pathology platform — parses NGS files (VCF, BAM, FASTQ) plus XML/PDF reports and clinical data |
 | [**phenoscapR**](https://github.com/CTTIR/phenoscapR) | Reading, QC, phenotyping, spatial statistics, and visualisation of single-cell spatial biology data from multiplexed imaging |
 | [**pressR**](https://github.com/CTTIR/pressR) | Parsing, analysis, and visualisation of capacitive pressure-distribution data (insoles, saddles, seating, pedography) |
