@@ -22,7 +22,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 
 > Statistical and analytical R packages developed and maintained by CTTIR, grouped by theme.
 >
-> **Status** &nbsp; ●●● on CRAN &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
+> **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 
 ### Imaging & Microscopy
 
@@ -62,7 +62,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**harbouR**](https://github.com/CTTIR/harbouR) | ●●○ | -na- | Unofficial R client for the SeaTable REST API — read, write, and sync collaborative cloud databases from R |
 | [**lstparsR**](https://github.com/Clinical-Pharmacy-Saarland-University/lstparsR) | ●●○ | -na- | Parser for NONMEM `.lst` output files — extracts THETA / OMEGA / SIGMA estimates into tidy data frames for population PK/PD analysis |
 | [**pressR**](https://github.com/CTTIR/pressR) | ●●○ | -na- | Parsing, analysis, and visualisation of capacitive pressure-distribution data (insoles, saddles, seating, pedography) |
-| [**qviewparsR**](https://github.com/CTTIR/qviewparsR) | ●●● | [Zenodo](https://doi.org/10.5281/zenodo.21395352) | Pure-R parser for the binary `.Q-View` project format used in chemiluminescent multiplex ELISA plate imaging |
+| [**qviewparsR**](https://github.com/CTTIR/qviewparsR) | ●●● | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21395352.svg)](https://doi.org/10.5281/zenodo.21395352) | Pure-R parser for the binary `.Q-View` project format used in chemiluminescent multiplex ELISA plate imaging |
 
 ### Methods & Analytics
 
@@ -93,7 +93,7 @@ remotes::install_github("CTTIR/<package>")
 
 > Standalone apps and tools that complement the R package suite.
 >
-> **Status** &nbsp; ●●● on CRAN &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
+> **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 
 | Application | Status | DOI | Description |
 |---|:---:|:---:|---|
@@ -106,7 +106,7 @@ remotes::install_github("CTTIR/<package>")
 
 > Plugins that extend Zotero for curated, reproducible reference management.
 >
-> **Status** &nbsp; ●●● on CRAN &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
+> **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 
 | Plugin | Status | DOI | Description |
 |---|:---:|:---:|---|
