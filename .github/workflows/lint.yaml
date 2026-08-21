@@ -1,0 +1,76 @@
+# Reusable lint workflow for the CTTIR suite.
+#
+#   uses: CTTIR/.github/.github/workflows/lint.yaml@main
+#
+# Ships REPORT-ONLY by default. Measured on 2026-08-21 the house linters find
+# 158 issues in cellreportR, 72 in scimagR, 49 in segmantR and 47 in scimapR -
+# turning them on as a merge gate would red five repositories on day one and
+# teach everyone to ignore the badge. Repositories opt into blocking with
+# `blocking: true` once their count is zero.
+on:
+  workflow_call:
+    inputs:
+      blocking:
+        description: "Fail the build on lint findings."
+        type: boolean
+        default: false
+      vocabulary-only:
+        description: "Run only the naming rules, not the style rules."
+        type: boolean
+        default: false
+
+name: lint
+
+permissions: read-all
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
+    steps:
+      - name: Check out the package
+        uses: actions/checkout@v4
+
+      - name: Check out shared CTTIR config
+        uses: actions/checkout@v4
+        with:
+          repository: CTTIR/.github
+          path: .cttir-shared
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::lintr, local::.
+          needs: lint
+
+      - name: Lint
+        env:
+          BLOCKING: ${{ inputs.blocking }}
+          VOCAB_ONLY: ${{ inputs.vocabulary-only }}
+        run: |
+          source(".cttir-shared/config/lint-cttir.R")
+          vocab_only <- identical(Sys.getenv("VOCAB_ONLY"), "true")
+          house <- cttir_linters(vocabulary_only = vocab_only)
+          lints <- lintr::lint_package(linters = c(house, lintr::default_linters))
+          print(lints)
+
+          n <- length(lints)
+          if (n == 0L) {
+            cat("::notice::No lint findings.\n")
+          } else {
+            by_linter <- sort(table(vapply(lints, function(x) x$linter, character(1))),
+                              decreasing = TRUE)
+            cat("::notice::", n, " lint findings: ",
+                paste(names(by_linter), by_linter, sep = "=", collapse = ", "), "\n", sep = "")
+          }
+
+          if (identical(Sys.getenv("BLOCKING"), "true") && n > 0L) {
+            quit(status = 1L)
+          }
+        shell: Rscript {0}
