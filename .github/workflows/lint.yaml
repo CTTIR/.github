@@ -18,6 +18,14 @@ on:
         description: "Run only the naming rules, not the style rules."
         type: boolean
         default: false
+      config-ref:
+        description: >
+          Ref of CTTIR/.github to take the shared linter config from. The
+          reusable workflow cannot discover its own ref, so a caller pinned to
+          a branch must pass the same branch here or it will silently pick up
+          main's config - or fail, if main does not have it yet.
+        type: string
+        default: main
 
 name: lint
 
@@ -38,6 +46,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: CTTIR/.github
+          ref: ${{ inputs.config-ref }}
           path: .cttir-shared
 
       - uses: r-lib/actions/setup-r@v2
@@ -57,7 +66,15 @@ jobs:
           source(".cttir-shared/config/lint-cttir.R")
           vocab_only <- identical(Sys.getenv("VOCAB_ONLY"), "true")
           house <- cttir_linters(vocabulary_only = vocab_only)
-          lints <- lintr::lint_package(linters = c(house, lintr::default_linters))
+          # Prefer the package's own .lintr if it has one, else the shared
+          # config, so a repository can diverge deliberately.
+          if (!file.exists(".lintr")) {
+            file.copy(".cttir-shared/config/.lintr", ".lintr")
+            cat("Using the shared CTTIR .lintr\n")
+          } else {
+            cat("Using this repository's own .lintr\n")
+          }
+          lints <- lintr::lint_package(linters = c(house, lintr::linters_with_defaults()))
           print(lints)
 
           n <- length(lints)
