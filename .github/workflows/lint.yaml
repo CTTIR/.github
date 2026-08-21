@@ -1,0 +1,107 @@
+# Reusable lint workflow for the CTTIR suite.
+#
+#   uses: CTTIR/.github/.github/workflows/lint.yaml@main
+#
+# Ships REPORT-ONLY by default. Measured on 2026-08-21 the house linters find
+# 158 issues in cellreportR, 72 in scimagR, 49 in segmantR and 47 in scimapR -
+# turning them on as a merge gate would red five repositories on day one and
+# teach everyone to ignore the badge. Repositories opt into blocking with
+# `blocking: true` once their count is zero.
+on:
+  workflow_call:
+    inputs:
+      blocking:
+        description: "Fail the build on lint findings."
+        type: boolean
+        default: false
+      vocabulary-only:
+        description: "Run only the naming rules, not the house style rules."
+        type: boolean
+        default: false
+      with-defaults:
+        description: >
+          Also run lintr's default style linters. Off by default: on hexmakR,
+          a repository with zero house findings, they produce 624 - 534 of
+          them infix_spaces. Restyling the estate is a separate decision from
+          holding its vocabulary, and mixing the two buries the signal.
+        type: boolean
+        default: false
+      config-ref:
+        description: >
+          Ref of CTTIR/.github to take the shared linter config from. The
+          reusable workflow cannot discover its own ref, so a caller pinned to
+          a branch must pass the same branch here or it will silently pick up
+          main's config - or fail, if main does not have it yet.
+        type: string
+        default: main
+
+name: lint
+
+permissions: read-all
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
+    steps:
+      - name: Check out the package
+        uses: actions/checkout@v4
+
+      - name: Check out shared CTTIR config
+        uses: actions/checkout@v4
+        with:
+          repository: CTTIR/.github
+          ref: ${{ inputs.config-ref }}
+          path: .cttir-shared
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::lintr, local::.
+          needs: lint
+
+      - name: Lint
+        env:
+          BLOCKING: ${{ inputs.blocking }}
+          VOCAB_ONLY: ${{ inputs.vocabulary-only }}
+          WITH_DEFAULTS: ${{ inputs.with-defaults }}
+        run: |
+          source(".cttir-shared/config/lint-cttir.R")
+          vocab_only <- identical(Sys.getenv("VOCAB_ONLY"), "true")
+          linters <- cttir_linters(vocabulary_only = vocab_only)
+          if (identical(Sys.getenv("WITH_DEFAULTS"), "true")) {
+            # Passing `linters=` overrides .lintr's own linters: entry
+            # entirely, so the shared config is only meaningful here.
+            if (!file.exists(".lintr")) {
+              file.copy(".cttir-shared/config/.lintr", ".lintr")
+              cat("Using the shared CTTIR .lintr for the default set\n")
+            } else {
+              cat("Using this repository's own .lintr for the default set\n")
+            }
+            linters <- c(linters, lintr::linters_with_defaults())
+          } else {
+            cat("House linters only (pass with-defaults: true for lintr's style set)\n")
+          }
+          lints <- lintr::lint_package(linters = linters)
+          print(lints)
+
+          n <- length(lints)
+          if (n == 0L) {
+            cat("::notice::No lint findings.\n")
+          } else {
+            by_linter <- sort(table(vapply(lints, function(x) x$linter, character(1))),
+                              decreasing = TRUE)
+            cat("::notice::", n, " lint findings: ",
+                paste(names(by_linter), by_linter, sep = "=", collapse = ", "), "\n", sep = "")
+          }
+
+          if (identical(Sys.getenv("BLOCKING"), "true") && n > 0L) {
+            quit(status = 1L)
+          }
+        shell: Rscript {0}

@@ -1,0 +1,88 @@
+# Reusable coverage workflow for the CTTIR suite.
+#
+#   uses: CTTIR/.github/.github/workflows/test-coverage.yaml@main
+#
+# Two properties that the 18 hand-maintained codecov configs did not have:
+#
+#   1. The gate is computed HERE, with covr and an explicit exit, never
+#      delegated to Codecov. Nine of 22 repositories currently report
+#      `active: false, totals: null` and still show a green build, because a
+#      deactivated Codecov fails nothing.
+#   2. `floor` is an absolute number. The previous configs used
+#      `target: auto, threshold: 1%`, which compares only against the base
+#      commit and therefore permits unlimited decay in 1% steps forever.
+on:
+  workflow_call:
+    inputs:
+      floor:
+        description: "Minimum coverage percentage. 0 disables the gate."
+        type: number
+        default: 0
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+
+name: test-coverage
+
+permissions: read-all
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      NOT_CRAN: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+          extra-repositories: https://cttir.r-universe.dev
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::covr, any::xml2, local::.
+          needs: coverage
+
+      - name: Measure coverage
+        env:
+          FLOOR: ${{ inputs.floor }}
+        run: |
+          # Pass 1 - the gated number. Tests only, no vignettes or examples.
+          # `type = "all"` would count an @examples block that merely calls a
+          # function, which is pure reachability with no assertion behind it.
+          cov <- covr::package_coverage(quiet = FALSE, clean = FALSE, type = "tests")
+          pct <- as.numeric(covr::percent_coverage(cov))
+          cat(sprintf("::notice::B_tests = %.2f%%\n", pct))
+
+          covr::to_cobertura(cov, filename = "cobertura.xml")
+
+          # Report the per-file tail so the uncovered surface is visible in the
+          # log even when Codecov is not reporting.
+          tally <- covr::tally_coverage(cov, by = "line")
+          by_file <- stats::aggregate(value ~ filename, data = tally,
+                                      FUN = function(v) 100 * mean(v > 0))
+          by_file <- by_file[order(by_file$value), , drop = FALSE]
+          cat("\nLowest-covered files:\n")
+          print(utils::head(by_file, 10), row.names = FALSE)
+
+          floor_pct <- suppressWarnings(as.numeric(Sys.getenv("FLOOR", "0")))
+          if (is.na(floor_pct)) floor_pct <- 0
+          if (floor_pct > 0 && pct < floor_pct) {
+            cat(sprintf("::error::Coverage %.2f%% is below the floor of %.2f%%.\n",
+                        pct, floor_pct))
+            quit(status = 1L)
+          }
+        shell: Rscript {0}
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./cobertura.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          # The previous configs set this false everywhere, which is why a
+          # deactivated Codecov produced a green build and an unknown badge.
+          fail_ci_if_error: true
+        continue-on-error: false

@@ -40,11 +40,11 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 
 | Package | Status | DOI | Description |
 |---|:---:|:---:|---|
-| [**cuvis.r**](https://github.com/CTTIR/cuvis.r) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889930.svg)](https://doi.org/10.5281/zenodo.21889930) | R bindings to the Cubert CUVIS SDK for reading, calibrating, and exporting hyperspectral camera data |
-| [**hyperspectaculR**](https://github.com/CTTIR/hyperspectaculR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889974.svg)](https://doi.org/10.5281/zenodo.21889974) | Publication-grade artistic visualisation of hyperspectral imagery, built on the `hyperspectR` cube class |
-| [**hyperspectR**](https://github.com/CTTIR/hyperspectR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889940.svg)](https://doi.org/10.5281/zenodo.21889940) | Complete pipeline for biomedical hyperspectral imaging — from raw camera data to clinical tissue oxygenation maps |
+| [**cuvis.r**](https://github.com/CTTIR/cuvis.r) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889930.svg)](https://doi.org/10.5281/zenodo.21889930) ⧗ | R bindings to the Cubert CUVIS SDK for reading, calibrating, and exporting hyperspectral camera data |
+| [**hyperspectaculR**](https://github.com/CTTIR/hyperspectaculR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889974.svg)](https://doi.org/10.5281/zenodo.21889974) ⧗ | Publication-grade artistic visualisation of hyperspectral imagery, built on the `hyperspectR` cube class |
+| [**hyperspectR**](https://github.com/CTTIR/hyperspectR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889940.svg)](https://doi.org/10.5281/zenodo.21889940) ⧗ | Complete pipeline for biomedical hyperspectral imaging — from raw camera data to clinical tissue oxygenation maps |
 | [**libscanR**](https://github.com/CTTIR/libscanR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889942.svg)](https://doi.org/10.5281/zenodo.21889942) ⧗ | Vendor-agnostic analysis and visualisation of Laser-Induced Breakdown Spectroscopy (LIBS) data, with a biomedical-tissue focus |
-| [**tivis.r**](https://github.com/CTTIR/tivis.r) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889970.svg)](https://doi.org/10.5281/zenodo.21889970) | Pure-R reader for Diaspective Vision TIVITA recordings — no vendor SDK required; companion to `cuvis.r` |
+| [**tivis.r**](https://github.com/CTTIR/tivis.r) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889970.svg)](https://doi.org/10.5281/zenodo.21889970) ⧗ | Pure-R reader for Diaspective Vision TIVITA recordings — no vendor SDK required; companion to `cuvis.r` |
 
 ### Omics & Transcriptomics
 

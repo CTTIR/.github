@@ -1,0 +1,24 @@
+name: Contract violation
+description: A package returned something the CTTIR conventions say it should not
+labels: ["contract"]
+body:
+  - type: input
+    id: producer
+    attributes:
+      label: Which package produced the value?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect, and which convention says so?
+      placeholder: "e.g. conf.low / conf.high per the broom spelling in CONTRIBUTING.md"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What did you get?
+      render: r
+    validations:
+      required: true
