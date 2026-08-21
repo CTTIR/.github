@@ -15,7 +15,15 @@ on:
         type: boolean
         default: false
       vocabulary-only:
-        description: "Run only the naming rules, not the style rules."
+        description: "Run only the naming rules, not the house style rules."
+        type: boolean
+        default: false
+      with-defaults:
+        description: >
+          Also run lintr's default style linters. Off by default: on hexmakR,
+          a repository with zero house findings, they produce 624 - 534 of
+          them infix_spaces. Restyling the estate is a separate decision from
+          holding its vocabulary, and mixing the two buries the signal.
         type: boolean
         default: false
       config-ref:
@@ -62,19 +70,25 @@ jobs:
         env:
           BLOCKING: ${{ inputs.blocking }}
           VOCAB_ONLY: ${{ inputs.vocabulary-only }}
+          WITH_DEFAULTS: ${{ inputs.with-defaults }}
         run: |
           source(".cttir-shared/config/lint-cttir.R")
           vocab_only <- identical(Sys.getenv("VOCAB_ONLY"), "true")
-          house <- cttir_linters(vocabulary_only = vocab_only)
-          # Prefer the package's own .lintr if it has one, else the shared
-          # config, so a repository can diverge deliberately.
-          if (!file.exists(".lintr")) {
-            file.copy(".cttir-shared/config/.lintr", ".lintr")
-            cat("Using the shared CTTIR .lintr\n")
+          linters <- cttir_linters(vocabulary_only = vocab_only)
+          if (identical(Sys.getenv("WITH_DEFAULTS"), "true")) {
+            # Passing `linters=` overrides .lintr's own linters: entry
+            # entirely, so the shared config is only meaningful here.
+            if (!file.exists(".lintr")) {
+              file.copy(".cttir-shared/config/.lintr", ".lintr")
+              cat("Using the shared CTTIR .lintr for the default set\n")
+            } else {
+              cat("Using this repository's own .lintr for the default set\n")
+            }
+            linters <- c(linters, lintr::linters_with_defaults())
           } else {
-            cat("Using this repository's own .lintr\n")
+            cat("House linters only (pass with-defaults: true for lintr's style set)\n")
           }
-          lints <- lintr::lint_package(linters = c(house, lintr::linters_with_defaults()))
+          lints <- lintr::lint_package(linters = linters)
           print(lints)
 
           n <- length(lints)
