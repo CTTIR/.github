@@ -60,6 +60,9 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
+          # Several packages Suggest sibling CTTIR packages. Without this,
+          # pak cannot solve them and the job dies before linting anything.
+          extra-repositories: https://cttir.r-universe.dev
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
