@@ -32,6 +32,9 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       NOT_CRAN: true
+      # Lifted into env so a step-level `if` can test it; secrets are not
+      # directly available in step conditions.
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -77,12 +80,23 @@ jobs:
           }
         shell: Rscript {0}
 
+      # Codecov refuses to create a commit on a protected branch without a
+      # token, and fail_ci_if_error then fails the job. The gate that matters
+      # is the covr step above, which has already run and exited non-zero if
+      # coverage was below the floor - the upload is reporting, not gating.
+      # So: upload strictly when a token exists, and say so loudly when one
+      # does not, rather than silently reporting green like the old configs.
       - name: Upload to Codecov
+        if: env.CODECOV_TOKEN != ''
         uses: codecov/codecov-action@v4
         with:
           files: ./cobertura.xml
           token: ${{ secrets.CODECOV_TOKEN }}
-          # The previous configs set this false everywhere, which is why a
-          # deactivated Codecov produced a green build and an unknown badge.
           fail_ci_if_error: true
-        continue-on-error: false
+
+      - name: Note the missing Codecov token
+        if: env.CODECOV_TOKEN == ''
+        run: >-
+          echo "::warning::No CODECOV_TOKEN secret. Coverage was measured and
+          gated in this workflow but not uploaded. Add the secret to publish it."
+
