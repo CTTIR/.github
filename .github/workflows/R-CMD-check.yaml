@@ -24,6 +24,8 @@ jobs:
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
+    continue-on-error: ${{ matrix.config.experimental || false }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -37,7 +39,13 @@ jobs:
           # support. Without it, code using base-R features newer than the
           # declared minimum (e.g. `%||%`, added in R 4.4.0) is never built
           # on a version where it fails.
-          - {os: ubuntu-latest,  r: 'oldrel-3'}
+          # Informational, not blocking. Its job is to answer "does the R
+          # version DESCRIPTION claims to support actually work" - but old R
+          # pairs with old Bioconductor, whose posit mirror 404s for several
+          # releases, so it fails on infrastructure as often as on code.
+          # Read its result; do not gate on it. The real fix where it fails
+          # for a genuine reason is to correct the declared R minimum.
+          - {os: ubuntu-latest,  r: 'oldrel-3', experimental: true}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
