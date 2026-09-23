@@ -16,17 +16,6 @@
 
 CTTIR develops open-source software, reproducible analysis pipelines, and educational materials at the interface of trauma surgery, tissue injury, and computational biomedicine. Our work spans biomarker discovery, multi-modal imaging, dimensionality reduction, molecular pathology, and clinical-translational data science.
 
-## Current status — 23 September 2026
-
-CTTIR has **38 public repositories** spanning research software, applications, teaching and shared infrastructure. This overview was checked against the [public GitHub inventory](https://github.com/orgs/CTTIR/repositories), package metadata and project READMEs on 23 September 2026.
-
-- **Spatial imaging:** `cellspecR` and `gatekeepR` are 1.0.0 release candidates, connecting validated cell tables to reviewed phenotypes and downstream `phenoscapR` analyses. `bloodspottR` is experimental software for calibrated histology measurements and result exploration.
-- **Applications:** `brainwritR` provides classroom brainwriting with persistent sessions and mobile reconnect support. `shinylaunchR` has a published 0.1.0 GitHub release; its current 0.2.0-rc.1 is an unpublished candidate.
-- **Development:** `annotatR` is at 0.2.0; `hyperspectR` is at 0.2.0.9000 and `segmantR` at 0.1.0.9000 on their default branches. These source versions do not imply a published release or CRAN acceptance.
-- **Placeholders:** `qupflowR` and `cttir.r-universe.dev` currently have no repository contents. They are listed below for completeness.
-
-The maturity indicators below describe project readiness; release-candidate and experimental qualifications are stated explicitly. They do not establish scientific or clinical validation. DOI archive versions may differ from current source versions.
-
 ---
 
 ## R Packages
@@ -35,7 +24,7 @@ The maturity indicators below describe project readiness; release-candidate and 
 >
 > **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 >
-> **DOI** &nbsp; ⧗ previously reserved identifier; registration remains unverified. See the [DOI index](https://cttir.github.io/website/software/) for the dated verification notes.
+> **DOI** &nbsp; ⧗ previously reserved identifier; registration remains unverified.
 
 ### Imaging & Microscopy
 
