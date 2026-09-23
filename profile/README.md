@@ -16,22 +16,36 @@
 
 CTTIR develops open-source software, reproducible analysis pipelines, and educational materials at the interface of trauma surgery, tissue injury, and computational biomedicine. Our work spans biomarker discovery, multi-modal imaging, dimensionality reduction, molecular pathology, and clinical-translational data science.
 
+## Current status — 23 September 2026
+
+CTTIR has **38 public repositories** spanning research software, applications, teaching and shared infrastructure. This overview was checked against the [public GitHub inventory](https://github.com/orgs/CTTIR/repositories), package metadata and project READMEs on 23 September 2026.
+
+- **Spatial imaging:** `cellspecR` and `gatekeepR` are 1.0.0 release candidates, connecting validated cell tables to reviewed phenotypes and downstream `phenoscapR` analyses. `bloodspottR` is experimental software for calibrated histology measurements and result exploration.
+- **Applications:** `brainwritR` provides classroom brainwriting with persistent sessions and mobile reconnect support. `shinylaunchR` has a published 0.1.0 GitHub release; its current 0.2.0-rc.1 is an unpublished candidate.
+- **Development:** `annotatR` is at 0.2.0; `hyperspectR` is at 0.2.0.9000 and `segmantR` at 0.1.0.9000 on their default branches. These source versions do not imply a published release or CRAN acceptance.
+- **Placeholders:** `qupflowR` and `cttir.r-universe.dev` currently have no repository contents. They are listed below for completeness.
+
+The maturity indicators below describe project readiness; release-candidate and experimental qualifications are stated explicitly. They do not establish scientific or clinical validation. DOI archive versions may differ from current source versions.
+
 ---
 
 ## R Packages
 
-> Statistical and analytical R packages developed and maintained by CTTIR, grouped by theme.
+> CTTIR R packages, grouped by theme, plus the externally maintained `lstparsR` companion.
 >
 > **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 >
-> **DOI** &nbsp; ⧗ reserved — pending publication (does not resolve yet)
+> **DOI** &nbsp; ⧗ previously reserved identifier; registration remains unverified. See the [DOI index](https://cttir.github.io/website/software/) for the dated verification notes.
 
 ### Imaging & Microscopy
 
 | Package | Status | DOI | Description |
 |---|:---:|:---:|---|
 | [**annotatR**](https://github.com/CTTIR/annotatR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889921.svg)](https://doi.org/10.5281/zenodo.21889921) ⧗ | Multi-layer region-of-interest annotation for whole-slide microscopy, hyperspectral cubes, and rasters — exports binary, labelled, and multi-class masks (GeoJSON, QuPath, TIFF) with a resumable Shiny/OpenSeadragon batch annotator |
+| [**bloodspottR**](https://github.com/CTTIR/bloodspottR) | ●○○ | — | Experimental package for calibrated histology burden measurements, traceable review, reporting and Shiny exploration of saved results; native whole-slide inference and portable DNN training are not yet qualified end to end. |
 | [**cellreportR**](https://github.com/CTTIR/cellreportR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889928.svg)](https://doi.org/10.5281/zenodo.21889928) ⧗ | Statistical analysis and audit-ready reporting pipeline for routine cell-culture diagnostics with microscopic evaluation |
+| [**cellspecR**](https://github.com/CTTIR/cellspecR) | ●●○ | — | 1.0.0 release candidate defining the cellspec table contract for segmented cells: import, validation, signal policies and integrity-checked exchange. External fixture comparisons and CRAN submission remain pending. |
+| [**gatekeepR**](https://github.com/CTTIR/gatekeepR) | ●●○ | — | 1.0.0 release candidate for marker callability, thresholds, phenotype classification and Shiny review, with immutable snapshots and verifiable exports; preparation for first CRAN submission is ongoing. |
 | [**phenoscapR**](https://github.com/CTTIR/phenoscapR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889952.svg)](https://doi.org/10.5281/zenodo.21889952) ⧗ | Reading, QC, phenotyping, spatial statistics, and visualisation of single-cell spatial biology data from multiplexed imaging |
 | [**scimagR**](https://github.com/CTTIR/scimagR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889958.svg)](https://doi.org/10.5281/zenodo.21889958) ⧗ | End-to-end pipeline for longitudinal MRI/CT analysis in spinal-cord injury research (wraps Spinal Cord Toolbox, dcm2niix) |
 | [**segmantR**](https://github.com/CTTIR/segmantR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889962.svg)](https://doi.org/10.5281/zenodo.21889962) ⧗ | Cell segmentation for histology and multiplexed tissue imaging with human-in-the-loop training (classical + Cellpose/StarDist/Mesmer) |
@@ -84,11 +98,14 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**reflowR**](https://github.com/CTTIR/reflowR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889956.svg)](https://doi.org/10.5281/zenodo.21889956) ⧗ | Custom workflowr themes and templates for reproducible research websites in R |
 | [**themakR**](https://github.com/CTTIR/themakR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889968.svg)](https://doi.org/10.5281/zenodo.21889968) ⧗ | Shared pkgdown template giving the CTTIR package suite a unified look — Hugo Coder palette with a light/dark toggle |
 
-Install any package with:
+Install implemented CTTIR R packages from their repositories (check each README for requirements):
 
 ```r
 # install.packages("remotes")
 remotes::install_github("CTTIR/<package>")
+
+# lstparsR is maintained in a separate organisation:
+# remotes::install_github("Clinical-Pharmacy-Saarland-University/lstparsR")
 ```
 
 ---
@@ -101,8 +118,9 @@ remotes::install_github("CTTIR/<package>")
 
 | Application | Status | DOI | Description |
 |---|:---:|:---:|---|
+| [**brainwritR**](https://github.com/CTTIR/brainwritR) | ●●○ | — | Development R/Shiny application for classroom brainwriting, with timed rounds, QR-code participation, SQLite persistence, mobile reconnect support and German, English and French interfaces. |
 | [**pwa-quest**](https://github.com/CTTIR/pwa-quest) | ●●○ | -na- | Offline-first Progressive Web App for collecting questionnaire responses in research and field settings — exports sessions as QR codes or CSV / XLSX / TXT / XML |
-| [**shinylaunchR**](https://github.com/CTTIR/shinylaunchR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889984.svg)](https://doi.org/10.5281/zenodo.21889984) ⧗ | Cross-platform desktop launchpad for R/Shiny apps — opens packaged apps, Shiny files, or hosted URLs each in its own native window while R runs headless |
+| [**shinylaunchR**](https://github.com/CTTIR/shinylaunchR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889984.svg)](https://doi.org/10.5281/zenodo.21889984) ⧗ | Desktop launchpad for package apps, staged Shiny source apps and hosted HTTPS URLs; published 0.1.0 release, with 0.2.0-rc.1 currently an unpublished release candidate |
 
 ---
 
@@ -126,7 +144,7 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 
 | Repository | Description |
 |---|---|
-| [**courses**](https://github.com/CTTIR/courses) | Course materials taught by the group |
+| [**courses**](https://github.com/CTTIR/courses) | Four-course biostatistics curriculum, from foundations and regression to study design and machine learning |
 | [**tutorials**](https://github.com/CTTIR/tutorials) | Hands-on tutorials accompanying our packages and methods |
 
 ---
@@ -136,6 +154,16 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 | Repository | Description |
 |---|---|
 | [**ressources**](https://github.com/CTTIR/ressources) | Shared assets, references, and supporting material used across CTTIR projects |
+
+---
+
+## Infrastructure & Planned Repositories
+
+| Repository | Current status |
+|---|---|
+| [**.github**](https://github.com/CTTIR/.github) | Organisation profile, contribution guidance and shared R package CI workflows |
+| [**cttir.r-universe.dev**](https://github.com/CTTIR/cttir.r-universe.dev) | Reserved package-registry repository; currently empty, so no working registry is implied |
+| [**qupflowR**](https://github.com/CTTIR/qupflowR) | Empty repository placeholder; implementation and installation instructions are not yet available |
 
 ---
 
