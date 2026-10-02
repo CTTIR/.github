@@ -13,6 +13,10 @@ on:
         description: "Add the Bioconductor repo so pak can solve Bioc Suggests."
         type: boolean
         default: false
+      macos-xquartz:
+        description: "Install XQuartz for macOS packages requiring X11 libraries."
+        type: boolean
+        default: false
 
 name: R-CMD-check
 
@@ -63,6 +67,14 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
           extra-repositories: https://cttir.r-universe.dev
+
+      - name: Install X11 libraries on macOS
+        if: runner.os == 'macOS' && inputs.macos-xquartz
+        run: |
+          brew install --cask xquartz
+          brew list --cask xquartz
+          test -r /opt/X11/lib/libX11.6.dylib
+          ls -l /opt/X11/lib/libX11.6.dylib
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
