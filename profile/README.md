@@ -84,7 +84,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**songR**](https://github.com/CTTIR/songR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889964.svg)](https://doi.org/10.5281/zenodo.21889964) ⧗ | Native R/C++ implementation of SONG (Self-Organizing Nebulous Growths) for nonlinear dimensionality reduction |
 | [**inferguidR**](https://github.com/CTTIR/inferguidR) | ●○○ | — | Guided inference, power analysis and diagnostic accuracy, with explicit assumptions, typed results, reproducible exports and a Shiny workbench. |
 | [**sandtablR**](https://github.com/CTTIR/sandtablR) | ●○○ | — | Synthetic patient-flow simulation, decision-path analysis and model comparison, with an interactive Shiny workbench. |
-| [**shieldR**](https://github.com/CTTIR/shieldR) | ●○○ | — | Academic simulation of patient-transfer networks under stochastic disruption, with reproducible policy comparisons and a Shiny workbench. |
+| [**shieldR**](https://github.com/CTTIR/shieldR) | ●○○ | — | Abstract logistics-chain simulation with time-varying item specifications and dynamic disruptions, with reproducible policy comparisons and a Shiny workbench. |
 
 ### Reproducibility & Tooling
 
@@ -120,6 +120,7 @@ remotes::install_github("CTTIR/<package>")
 | [**pwa-quest**](https://github.com/CTTIR/pwa-quest) | ●●○ | -na- | Offline-first Progressive Web App for collecting questionnaire responses in research and field settings — exports sessions as QR codes or CSV / XLSX / TXT / XML |
 | [**shinylaunchR**](https://github.com/CTTIR/shinylaunchR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889984.svg)](https://doi.org/10.5281/zenodo.21889984) ⧗ | Desktop launchpad for package apps, staged Shiny source apps and hosted HTTPS URLs; published 0.1.0 release, with 0.2.0-rc.1 currently an unpublished release candidate |
 | [**delphyR**](https://github.com/CTTIR/delphyR) | ●○○ | — | Delphi-study platform with R analysis packages, a multilingual Shiny interface and PostgreSQL workflows; synthetic development examples, not a production deployment. |
+| [**researchd**](https://github.com/CTTIR/researchd) | ●○○ | — | Self-hosted academic literature and signal surveillance server, with an R pipeline, browser dashboard, token-authenticated API and researchR client. |
 
 ---
 
