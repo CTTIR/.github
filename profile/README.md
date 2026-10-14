@@ -109,6 +109,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**reflowR**](https://github.com/CTTIR/reflowR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889956.svg)](https://doi.org/10.5281/zenodo.21889956) ⧗ | Custom workflowr themes and templates for reproducible research websites in R |
 | [**themakR**](https://github.com/CTTIR/themakR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889968.svg)](https://doi.org/10.5281/zenodo.21889968) ⧗ | Shared pkgdown template giving the CTTIR package suite a unified look — Hugo Coder palette with a light/dark toggle |
 | [**cttiR**](https://github.com/CTTIR/cttiR) | ●○○ | — | Structured research-project creation, versioned workflow selection and reproducible analysis scaffolding; development software with explicit validation gates. |
+| [**qupflowR**](https://github.com/CTTIR/qupflowR) | ●○○ | — | Experimental R foundations for a planned QuPath interface: protocol helpers, synthetic contract fixtures and pinned external-method execution. Live bridge, interactive app and workflow engine remain planned. |
 
 Install implemented CTTIR R packages from their repositories (check each README for requirements):
 
@@ -178,8 +179,7 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 |---|---|
 | [**cttiR-model**](https://github.com/CTTIR/cttiR-model) | Experimental CPU-first tooling for versioned research resources, local services and evaluation; training and release remain deferred. |
 | [**.github**](https://github.com/CTTIR/.github) | Organisation profile, contribution guidance and shared R package CI workflows |
-| [**cttir.r-universe.dev**](https://github.com/CTTIR/cttir.r-universe.dev) | Reserved package-registry repository; currently empty, so no working registry is implied |
-| [**qupflowR**](https://github.com/CTTIR/qupflowR) | Empty repository placeholder; implementation and installation instructions are not yet available |
+| [**cttir.r-universe.dev**](https://github.com/CTTIR/cttir.r-universe.dev) | Package-registry configuration listing qviewparsR, cuvis.r, tivis.r and hyperspectR for r-universe builds; consult the registry for current build availability |
 
 ---
 
