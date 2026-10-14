@@ -18,6 +18,21 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 
 ---
 
+## Latest package updates · 14 October 2026
+
+- **inferguidR, sandtablR and shieldR** are available as public MIT packages with Shiny workbenches, README examples and vignettes. Their development status remains explicit below.
+- **shieldR 0.6.0** models abstract logistics chains under dynamic disruptions, with item specifications that change over time. The revised interface requires migration of earlier scripts and saved objects.
+- **researchd** is now a public MIT server project, paired with **researchR**. The client includes an introductory vignette; live server operation and external-provider checks remain separate acceptance steps.
+- Supplied hex artwork is integrated into **inferguidR, shieldR and researchR**, including their package documentation and the website catalogue.
+
+<p align="center">
+  <a href="https://github.com/CTTIR/inferguidR"><img src="https://raw.githubusercontent.com/CTTIR/inferguidR/main/man/figures/logo.svg" height="139" alt="inferguidR" /></a>
+  <a href="https://github.com/CTTIR/shieldR"><img src="https://raw.githubusercontent.com/CTTIR/shieldR/main/man/figures/logo.svg" height="139" alt="shieldR" /></a>
+  <a href="https://github.com/CTTIR/researchR"><img src="https://raw.githubusercontent.com/CTTIR/researchR/main/man/figures/logo.svg" height="139" alt="researchR" /></a>
+</p>
+
+---
+
 ## R Packages
 
 > CTTIR R packages, grouped by theme, plus the externally maintained `lstparsR` companion.
@@ -176,7 +191,7 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 
 ## Contributing & Citation
 
-Check each repository for its licence and citation instructions. The new inferguidR, sandtablR and shieldR public editions use MIT; for R packages, `citation("package")` reports installed-version metadata. Record the exact version or revision used in an analysis.
+Check each repository for its licence and citation instructions. The new inferguidR, sandtablR, shieldR and researchd public editions use MIT; for R packages, `citation("package")` reports installed-version metadata. Record the exact version or revision used in an analysis.
 
 For questions, contributions, or collaboration enquiries, open an issue on the relevant repository.
 
