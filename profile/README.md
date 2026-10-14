@@ -22,6 +22,9 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 
 > CTTIR R packages, grouped by theme, plus the externally maintained `lstparsR` companion.
 >
+> Public repository coverage checked on 14 October 2026. Repository visibility
+> does not establish a stable release, clinical validity or production readiness.
+>
 > **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 >
 > **DOI** &nbsp; ⧗ previously reserved identifier; registration remains unverified.
@@ -70,6 +73,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**lstparsR**](https://github.com/Clinical-Pharmacy-Saarland-University/lstparsR) | ●●○ | -na- | Parser for NONMEM `.lst` output files — extracts THETA / OMEGA / SIGMA estimates into tidy data frames for population PK/PD analysis |
 | [**pressR**](https://github.com/CTTIR/pressR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889954.svg)](https://doi.org/10.5281/zenodo.21889954) ⧗ | Parsing, analysis, and visualisation of capacitive pressure-distribution data (insoles, saddles, seating, pedography) |
 | [**qviewparsR**](https://github.com/CTTIR/qviewparsR) | ●●● | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21395352.svg)](https://doi.org/10.5281/zenodo.21395352) | Pure-R parser for the binary `.Q-View` project format used in chemiluminescent multiplex ELISA plate imaging |
+| [**researchR**](https://github.com/CTTIR/researchR) | ●○○ | — | R client for literature and signal surveillance through a separately deployed researchd server; retrieves records and manages surveillance questions. |
 
 ### Methods & Analytics
 
@@ -78,6 +82,9 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**dynasimR**](https://github.com/CTTIR/dynasimR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889932.svg)](https://doi.org/10.5281/zenodo.21889932) ⧗ | Domain-neutral analysis and visualisation layer for discrete-event, agent-based, and node-actor simulation outputs |
 | [**scimapR**](https://github.com/CTTIR/scimapR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889960.svg)](https://doi.org/10.5281/zenodo.21889960) ⧗ | Reproducible, question-driven, embedding-aware science mapping — bibliometric and scientometric analysis toolkit |
 | [**songR**](https://github.com/CTTIR/songR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889964.svg)](https://doi.org/10.5281/zenodo.21889964) ⧗ | Native R/C++ implementation of SONG (Self-Organizing Nebulous Growths) for nonlinear dimensionality reduction |
+| [**inferguidR**](https://github.com/CTTIR/inferguidR) | ●○○ | — | Guided inference, power analysis and diagnostic accuracy, with explicit assumptions, typed results, reproducible exports and a Shiny workbench. |
+| [**sandtablR**](https://github.com/CTTIR/sandtablR) | ●○○ | — | Synthetic patient-flow simulation, decision-path analysis and model comparison, with an interactive Shiny workbench. |
+| [**shieldR**](https://github.com/CTTIR/shieldR) | ●○○ | — | Academic simulation of patient-transfer networks under stochastic disruption, with reproducible policy comparisons and a Shiny workbench. |
 
 ### Reproducibility & Tooling
 
@@ -86,6 +93,7 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 | [**hexmakR**](https://github.com/CTTIR/hexmakR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889938.svg)](https://doi.org/10.5281/zenodo.21889938) ⧗ | Generate polished hex sticker logos for R packages using customizable templates |
 | [**reflowR**](https://github.com/CTTIR/reflowR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889956.svg)](https://doi.org/10.5281/zenodo.21889956) ⧗ | Custom workflowr themes and templates for reproducible research websites in R |
 | [**themakR**](https://github.com/CTTIR/themakR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889968.svg)](https://doi.org/10.5281/zenodo.21889968) ⧗ | Shared pkgdown template giving the CTTIR package suite a unified look — Hugo Coder palette with a light/dark toggle |
+| [**cttiR**](https://github.com/CTTIR/cttiR) | ●○○ | — | Structured research-project creation, versioned workflow selection and reproducible analysis scaffolding; development software with explicit validation gates. |
 
 Install implemented CTTIR R packages from their repositories (check each README for requirements):
 
@@ -102,6 +110,7 @@ remotes::install_github("CTTIR/<package>")
 ## Applications
 
 > Standalone apps and tools that complement the R package suite.
+> inferguidR, sandtablR and shieldR also provide Shiny workbenches inside their packages.
 >
 > **Status** &nbsp; ●●● published &nbsp;·&nbsp; ●●○ usable &nbsp;·&nbsp; ●○○ draft &nbsp;·&nbsp; ○○○ idea
 
@@ -110,6 +119,7 @@ remotes::install_github("CTTIR/<package>")
 | [**brainwritR**](https://github.com/CTTIR/brainwritR) | ●●○ | — | Development R/Shiny application for classroom brainwriting, with timed rounds, QR-code participation, SQLite persistence, mobile reconnect support and German, English and French interfaces. |
 | [**pwa-quest**](https://github.com/CTTIR/pwa-quest) | ●●○ | -na- | Offline-first Progressive Web App for collecting questionnaire responses in research and field settings — exports sessions as QR codes or CSV / XLSX / TXT / XML |
 | [**shinylaunchR**](https://github.com/CTTIR/shinylaunchR) | ●●○ | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889984.svg)](https://doi.org/10.5281/zenodo.21889984) ⧗ | Desktop launchpad for package apps, staged Shiny source apps and hosted HTTPS URLs; published 0.1.0 release, with 0.2.0-rc.1 currently an unpublished release candidate |
+| [**delphyR**](https://github.com/CTTIR/delphyR) | ●○○ | — | Delphi-study platform with R analysis packages, a multilingual Shiny interface and PostgreSQL workflows; synthetic development examples, not a production deployment. |
 
 ---
 
@@ -150,6 +160,7 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 
 | Repository | Current status |
 |---|---|
+| [**cttiR-model**](https://github.com/CTTIR/cttiR-model) | Experimental CPU-first tooling for versioned research resources, local services and evaluation; training and release remain deferred. |
 | [**.github**](https://github.com/CTTIR/.github) | Organisation profile, contribution guidance and shared R package CI workflows |
 | [**cttir.r-universe.dev**](https://github.com/CTTIR/cttir.r-universe.dev) | Reserved package-registry repository; currently empty, so no working registry is implied |
 | [**qupflowR**](https://github.com/CTTIR/qupflowR) | Empty repository placeholder; implementation and installation instructions are not yet available |
@@ -164,7 +175,7 @@ Install by downloading the `.xpi` from the corresponding repository's Releases p
 
 ## Contributing & Citation
 
-Most repositories carry an MIT license and a `CITATION.cff` file. Please cite the specific package or repository you use — see each repo's `README.md` for the canonical citation.
+Check each repository for its licence and citation instructions. The new inferguidR, sandtablR and shieldR public editions use MIT; for R packages, `citation("package")` reports installed-version metadata. Record the exact version or revision used in an analysis.
 
 For questions, contributions, or collaboration enquiries, open an issue on the relevant repository.
 
