@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://avatars.githubusercontent.com/u/275040041?s=200&v=4" width="120" alt="CTTIR logo" />
+<img src="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/logo.png" width="120" height="139" alt="CTTIR hex logo" />
 
 # Computational Trauma and Tissue Injury Research
 
