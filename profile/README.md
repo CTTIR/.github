@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/logo.png" width="120" height="139" alt="CTTIR hex logo" />
+<picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/logo-with-name-dark.png" /><img src="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/logo-with-name.png" alt="CTTIR hex logo" width="120" height="155" /></picture>
 
 # Computational Trauma and Tissue Injury Research
 
@@ -19,9 +19,9 @@ CTTIR develops open-source software, reproducible analysis pipelines, and educat
 ---
 
 <p align="center">
-  <a href="https://github.com/CTTIR/inferguidR"><img src="https://raw.githubusercontent.com/CTTIR/inferguidR/main/man/figures/logo.svg" height="139" alt="inferguidR" /></a>
-  <a href="https://github.com/CTTIR/shieldR"><img src="https://raw.githubusercontent.com/CTTIR/shieldR/main/man/figures/logo.svg" height="139" alt="shieldR" /></a>
-  <a href="https://github.com/CTTIR/researchR"><img src="https://raw.githubusercontent.com/CTTIR/researchR/main/man/figures/logo.svg" height="139" alt="researchR" /></a>
+  <a href="https://github.com/CTTIR/inferguidR"><picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CTTIR/inferguidR/main/man/figures/logo-with-name-dark.svg" /><img src="https://raw.githubusercontent.com/CTTIR/inferguidR/main/man/figures/logo-with-name.svg" alt="inferguidR" width="120" height="155" /></picture></a>
+  <a href="https://github.com/CTTIR/shieldR"><picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CTTIR/shieldR/main/man/figures/logo-with-name-dark.svg" /><img src="https://raw.githubusercontent.com/CTTIR/shieldR/main/man/figures/logo-with-name.svg" alt="shieldR" width="120" height="155" /></picture></a>
+  <a href="https://github.com/CTTIR/researchR"><picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CTTIR/researchR/main/man/figures/logo-with-name-dark.svg" /><img src="https://raw.githubusercontent.com/CTTIR/researchR/main/man/figures/logo-with-name.svg" alt="researchR" width="120" height="155" /></picture></a>
 </p>
 
 ---
