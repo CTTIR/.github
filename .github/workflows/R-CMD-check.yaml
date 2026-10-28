@@ -44,12 +44,13 @@ jobs:
           # declared minimum (e.g. `%||%`, added in R 4.4.0) is never built
           # on a version where it fails.
           # Informational, not blocking. Its job is to answer "does the R
-          # version DESCRIPTION claims to support actually work" - but old R
-          # pairs with old Bioconductor, whose posit mirror 404s for several
-          # releases, so it fails on infrastructure as often as on code.
-          # Read its result; do not gate on it. The real fix where it fails
-          # for a genuine reason is to correct the declared R minimum.
-          - {os: ubuntu-latest,  r: 'oldrel-3', experimental: true}
+          # version DESCRIPTION claims to support actually work". Read its
+          # result; do not gate on it. The real fix where it fails for a
+          # genuine reason is to correct the declared R minimum.
+          # Old R pairs with old Bioconductor (R 4.3 -> 3.18), which pak's
+          # default mirror, bioconductor.posit.co, does not carry: every
+          # 3.18 repository 404s there. bioconductor.org still serves it.
+          - {os: ubuntu-latest,  r: 'oldrel-3', experimental: true, bioc-mirror: 'https://bioconductor.org'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -67,6 +68,13 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
           extra-repositories: https://cttir.r-universe.dev
+
+      - name: Use the Bioconductor mirror this row needs
+        if: matrix.config.bioc-mirror
+        shell: bash
+        env:
+          BIOC_MIRROR: ${{ matrix.config.bioc-mirror }}
+        run: echo "R_BIOC_MIRROR=$BIOC_MIRROR" >> "$GITHUB_ENV"
 
       - name: Install X11 libraries on macOS
         if: runner.os == 'macOS' && inputs.macos-xquartz
