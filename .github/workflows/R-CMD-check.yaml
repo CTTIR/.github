@@ -64,7 +64,7 @@ jobs:
       CTTIR_PRIVATE_TERMS: ${{ secrets.CTTIR_PRIVATE_TERMS }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Only a count is printed: the terms and the lines that match must not
       # appear in a public log. Run the same grep locally to see where.
