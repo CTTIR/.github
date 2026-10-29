@@ -17,6 +17,10 @@ on:
         description: "Install XQuartz for macOS packages requiring X11 libraries."
         type: boolean
         default: false
+    secrets:
+      CTTIR_PRIVATE_TERMS:
+        description: "Regular expression of study and person names that must not occur in the package."
+        required: false
 
 name: R-CMD-check
 
@@ -56,9 +60,31 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
       _R_CHECK_FORCE_SUGGESTS_: false
+      CTTIR_PRIVATE_TERMS: ${{ secrets.CTTIR_PRIVATE_TERMS }}
 
     steps:
       - uses: actions/checkout@v4
+
+      # Only a count is printed: the terms and the lines that match must not
+      # appear in a public log. Run the same grep locally to see where.
+      - name: Check for private terms
+        if: env.CTTIR_PRIVATE_TERMS != '' && runner.os == 'Linux' && matrix.config.r == 'release'
+        shell: bash
+        run: |
+          set +e
+          grep -r -I -P -l --exclude-dir=.git -e "$CTTIR_PRIVATE_TERMS" . > "$RUNNER_TEMP/private-hits.txt"
+          status=$?
+          set -e
+          if [ "$status" -gt 1 ]; then
+            echo "::error::The private-term scan could not run."
+            exit 1
+          fi
+          n=$(wc -l < "$RUNNER_TEMP/private-hits.txt")
+          if [ "$n" -gt 0 ]; then
+            echo "::error::$n file(s) contain private terms."
+            exit 1
+          fi
+          echo "No private terms found."
 
       - uses: r-lib/actions/setup-pandoc@v2
 
