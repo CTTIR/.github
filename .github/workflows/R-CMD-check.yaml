@@ -50,7 +50,8 @@ jobs:
           # Informational, not blocking. Its job is to answer "does the R
           # version DESCRIPTION claims to support actually work". Read its
           # result; do not gate on it. The real fix where it fails for a
-          # genuine reason is to correct the declared R minimum.
+          # genuine reason is to correct the declared R minimum; a package whose
+          # declared minimum is newer than this row then skips it with a notice.
           # Old R pairs with old Bioconductor (R 4.3 -> 3.18), which pak's
           # default mirror, bioconductor.posit.co, does not carry: every
           # 3.18 repository 404s there. bioconductor.org still serves it.
@@ -95,15 +96,28 @@ jobs:
           use-public-rspm: true
           extra-repositories: https://cttir.r-universe.dev
 
+      # A row older than the R version DESCRIPTION requires has nothing to
+      # test: it is reported and skipped instead of failing to install.
+      - name: Compare R with the declared minimum
+        id: rmin
+        shell: Rscript {0}
+        run: |
+          dep <- read.dcf("DESCRIPTION", fields = "Depends")[1, 1]
+          if (is.na(dep)) dep <- ""
+          m <- regmatches(dep, regexec("\\bR\\s*\\(>=\\s*([0-9.]+)\\)", dep, perl = TRUE))[[1]]
+          ok <- length(m) < 2L || getRversion() >= package_version(m[2])
+          if (!ok) cat(sprintf("::notice::R %s is older than the declared minimum R %s; this row is skipped.\n", getRversion(), m[2]))
+          cat(sprintf("supported=%s\n", tolower(ok)), file = Sys.getenv("GITHUB_OUTPUT"), append = TRUE)
+
       - name: Use the Bioconductor mirror this row needs
-        if: matrix.config.bioc-mirror
+        if: steps.rmin.outputs.supported == 'true' && matrix.config.bioc-mirror
         shell: bash
         env:
           BIOC_MIRROR: ${{ matrix.config.bioc-mirror }}
         run: echo "R_BIOC_MIRROR=$BIOC_MIRROR" >> "$GITHUB_ENV"
 
       - name: Install X11 libraries on macOS
-        if: runner.os == 'macOS' && inputs.macos-xquartz
+        if: steps.rmin.outputs.supported == 'true' && runner.os == 'macOS' && inputs.macos-xquartz
         run: |
           brew install --cask xquartz
           brew list --cask xquartz
@@ -111,12 +125,14 @@ jobs:
           ls -l /opt/X11/lib/libX11.6.dylib
 
       - uses: r-lib/actions/setup-r-dependencies@v2
+        if: steps.rmin.outputs.supported == 'true'
         with:
           extra-packages: any::rcmdcheck
           needs: check
           extra-repositories: ${{ inputs.bioc-repository && 'https://bioconductor.org/packages/release/bioc' || '' }}
 
       - name: Install Bioconductor Suggests (optional)
+        if: steps.rmin.outputs.supported == 'true'
         run: |
           if (!requireNamespace("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
@@ -141,6 +157,7 @@ jobs:
         continue-on-error: true
 
       - uses: r-lib/actions/check-r-package@v2
+        if: steps.rmin.outputs.supported == 'true'
         with:
           upload-snapshots: true
           args: 'c("--no-manual", "--as-cran")'
