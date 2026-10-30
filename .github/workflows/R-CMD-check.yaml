@@ -10,7 +10,7 @@ on:
   workflow_call:
     inputs:
       bioc-repository:
-        description: "Add the Bioconductor repo so pak can solve Bioc Suggests."
+        description: "Compatibility input; pak resolves Bioconductor dependencies automatically."
         type: boolean
         default: false
       macos-xquartz:
@@ -24,7 +24,8 @@ on:
 
 name: R-CMD-check
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   R-CMD-check:
@@ -129,32 +130,9 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          extra-repositories: ${{ inputs.bioc-repository && 'https://bioconductor.org/packages/release/bioc' || '' }}
-
-      - name: Install Bioconductor Suggests (optional)
-        if: steps.rmin.outputs.supported == 'true'
-        run: |
-          if (!requireNamespace("BiocManager", quietly = TRUE))
-            install.packages("BiocManager")
-          bioc_pkgs <- c("DESeq2", "edgeR", "limma", "ShortRead", "Biostrings",
-                         "Rsamtools", "GenomicAlignments", "GenomicFeatures",
-                         "GenomicRanges", "SummarizedExperiment", "Biobase",
-                         "ComplexHeatmap", "EBImage", "SpatialExperiment",
-                         "S4Vectors", "SingleCellExperiment")
-          desc_suggests <- strsplit(read.dcf("DESCRIPTION")[, "Suggests"], ",\\s*")[[1]]
-          desc_suggests <- trimws(gsub("\\s*\\(.*\\)", "", desc_suggests))
-          to_install <- intersect(bioc_pkgs, desc_suggests)
-          if (length(to_install) > 0) {
-            message("Installing Bioconductor packages: ", paste(to_install, collapse = ", "))
-            tryCatch(
-              BiocManager::install(to_install, update = FALSE),
-              error = function(e) message("Bioconductor install skipped: ", e$message)
-            )
-          } else {
-            message("No Bioconductor Suggests found - skipping.")
-          }
-        shell: Rscript {0}
-        continue-on-error: true
+          # Keep dependency failures blocking. pak resolves declared Suggests,
+          # including Bioconductor packages, for the R version in this row.
+          dependencies: '"all"'
 
       - uses: r-lib/actions/check-r-package@v2
         if: steps.rmin.outputs.supported == 'true'

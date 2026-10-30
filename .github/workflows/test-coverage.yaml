@@ -24,7 +24,8 @@ on:
 
 name: test-coverage
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   test-coverage:
@@ -53,11 +54,20 @@ jobs:
         env:
           FLOOR: ${{ inputs.floor }}
         run: |
+          floor_pct <- suppressWarnings(as.numeric(Sys.getenv("FLOOR", "0")))
+          if (length(floor_pct) != 1L || !is.finite(floor_pct) ||
+              floor_pct < 0 || floor_pct > 100) {
+            stop("Coverage floor must be a finite number between 0 and 100.")
+          }
+
           # Pass 1 - the gated number. Tests only, no vignettes or examples.
           # `type = "all"` would count an @examples block that merely calls a
           # function, which is pure reachability with no assertion behind it.
           cov <- covr::package_coverage(quiet = FALSE, clean = FALSE, type = "tests")
           pct <- as.numeric(covr::percent_coverage(cov))
+          if (length(pct) != 1L || !is.finite(pct)) {
+            stop("No measurable test coverage; cannot report or enforce a percentage.")
+          }
           cat(sprintf("::notice::B_tests = %.2f%%\n", pct))
 
           covr::to_cobertura(cov, filename = "cobertura.xml")
@@ -71,8 +81,6 @@ jobs:
           cat("\nLowest-covered files:\n")
           print(utils::head(by_file, 10), row.names = FALSE)
 
-          floor_pct <- suppressWarnings(as.numeric(Sys.getenv("FLOOR", "0")))
-          if (is.na(floor_pct)) floor_pct <- 0
           if (floor_pct > 0 && pct < floor_pct) {
             cat(sprintf("::error::Coverage %.2f%% is below the floor of %.2f%%.\n",
                         pct, floor_pct))
