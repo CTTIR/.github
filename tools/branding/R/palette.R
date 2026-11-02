@@ -44,6 +44,10 @@ cttir_style <- function(family, mode="light") {
     s$facet <- s$face; s$facet2 <- s$face
     s$rim <- a
   }
+  # Suite packages (cttir.suite option) keep their family colours with the
+  # CTTIR gold rim shared with cttiR and the institution logo.
+  if(mode!="mono" && base::isTRUE(base::getOption("cttir.suite",FALSE)))
+    s$rim <- if(mode=="light") cttir_token("core","accent_light") else cttir_accents[["core"]]
   vision <- base::getOption("cttir.vision","normal")
   if(vision!="normal") for(n in base::setdiff(base::names(s),"mode"))
     s[[n]] <- cttir_simulate_cvd(s[[n]],vision)
