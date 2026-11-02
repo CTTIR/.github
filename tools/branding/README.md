@@ -55,9 +55,15 @@ favicons and explicitly compact symbols use artwork-only variants.
 CTTIR itself uses a square, not a hex, so the organisation never reads as one
 more package. Four material ribbons interlock around a square core, the joined
 ribbons of the CTTIR hex mark rebuilt on a square. The wordmark sets CTTIR in
-JetBrains Mono SemiBold with the second T in CTTIR blue, and the full name in
-Inter. Colours, the tinted tile with its blue rim, facets and cast shadows all
-come from `design_tokens.csv` and the shared palette and primitives.
+JetBrains Mono SemiBold with the second T in gold, and the full name in Inter.
+
+The institution logo and cttiR share the reserved `core` palette, which no
+topic family uses: the cttiR scale of near-black, white and slate grey with a
+gold accent on the rim, one ribbon and the second T. `topic,core` holds the
+gold for dark surfaces (#D4AF37); `core,accent_light` holds the deeper gold
+used on light surfaces (#9A7B26), because #D4AF37 is only 2:1 against white.
+`cttir_style("core", mode)` builds it from the platform scale. Greyscale
+versions use the shared v5 greys.
 
 `R/institution.R` draws it and `institution.R` writes the files:
 

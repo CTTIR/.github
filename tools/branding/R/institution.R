@@ -1,20 +1,21 @@
 # CTTIR institution logo. Packages carry the hex; the institution uses a
 # square, so the two never read as the same kind of thing. Four material
 # ribbons interlock around a shared square core: the joined ribbons of the
-# CTTIR hex mark, rebuilt on a square. Colours, type, facets and cast
-# shadows all come from the v5 tokens, palette and primitives.
+# CTTIR hex mark, rebuilt on a square. It uses the reserved core palette,
+# the cttiR scale with a gold accent, which only cttiR shares. Type, facets
+# and cast shadows come from the v5 tokens and primitives.
 
 cttir_institution_cap <- .73  # JetBrains Mono cap height, in em
 
 cttir_institution_style <- function(mode) {
-  s <- cttir_style("brand", mode)
+  s <- cttir_style("core", mode)
   if (mode == "light") s$muted <- "#424242"
-  # The second T of the wordmark; lightened on dark so it stays visible.
-  s$rear <- if (mode == "dark") s$mid else s$accent
+  # The second T of the wordmark carries the gold accent.
+  s$rear <- s$accent
   s
 }
 
-# The square tile: group-tinted face and solid brand rim, as on the hexes.
+# The square tile: the cttiR face and the gold rim, as on the cttiR hex.
 # Opaque fills the corners with the face colour for app icons and avatars.
 cttir_institution_tile <- function(s, opaque = FALSE, inset = .035, r = .06) {
   if (opaque) grid::grid.rect(gp = grid::gpar(fill = s$face, col = NA))
@@ -36,7 +37,7 @@ cttir_institution_mark <- function(s, small = FALSE, opaque = FALSE) {
   base::invisible(NULL)
 }
 
-# CTTIR in five monospace slots, the second T in the brand colour, with the
+# CTTIR in five monospace slots, the second T in gold, with the
 # full name in two lines of Inter. H and W are the device size in inches.
 cttir_institution_wordmark <- function(s, x0, H, W, h = .34, y = .44) {
   cap <- cttir_institution_cap
