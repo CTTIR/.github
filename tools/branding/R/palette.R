@@ -6,7 +6,7 @@ cttir_family_labels <- c(spectral="Spectral imaging", spatial="Spatial biology",
   omics="Molecular data", clinical="Clinical science", methods="Learning & inference",
   simulation="Systems & simulation", evidence="Evidence & discovery",
   platform="Research infrastructure", brand="Science, connected",
-  core="CTTIR core")
+  core="CTTIR core", apps="Apps & plugins")
 cttir_mix <- function(a,b,t) {
   z <- grDevices::col2rgb(a)*t + grDevices::col2rgb(b)*(1-t)
   grDevices::rgb(z[1],z[2],z[3],maxColorValue=255)

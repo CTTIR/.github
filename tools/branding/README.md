@@ -77,3 +77,13 @@ Rscript tools/branding/institution.R --apply
 512 px and `favicon.svg`; and the opaque `apple-touch-icon.png` and
 `github-avatar.png`. Icons of 64 px and below omit the hairline highlight.
 Re-rendering produces identical files.
+
+## Square logos for software that is not an R package
+
+R packages carry the hex. Zotero plugins and web apps use the square v5
+logo in the reserved apps family: wine (`topic,apps`, #9E1B42), a colour no
+topic family, cttiR or the institution logo uses. `R/square.R` draws the
+rounded square with the shared motifs, primitives and shading; each such
+repository's `render.R` writes the artwork-only square as `hex.*` and the
+named square as `lockup.*`. Names use the installed JetBrains Mono
+ExtraBold, the closest cut to the supplied v5 hex names.
