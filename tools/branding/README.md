@@ -49,3 +49,25 @@ These files are copied without regenerating font outlines. Additional platform
 icon sizes continue to use the bundled R motif renderer. `assets.csv` records
 the intended variant for each destination; display logos use `lockup`, while
 favicons and explicitly compact symbols use artwork-only variants.
+
+## Institution logo
+
+CTTIR itself uses a square, not a hex, so the organisation never reads as one
+more package. Four material ribbons interlock around a square core, the joined
+ribbons of the CTTIR hex mark rebuilt on a square. The wordmark sets CTTIR in
+JetBrains Mono SemiBold with the second T in CTTIR blue, and the full name in
+Inter. Colours, the tinted tile with its blue rim, facets and cast shadows all
+come from `design_tokens.csv` and the shared palette and primitives.
+
+`R/institution.R` draws it and `institution.R` writes the files:
+
+```sh
+Rscript tools/branding/institution.R /path/to/review
+Rscript tools/branding/institution.R --apply
+```
+
+`--apply` writes `assets/branding/institution/`: `logo` (mark and name) and
+`mark` in light, `-dark` and `-mono` as SVG and PNG; dark icons from 16 to
+512 px and `favicon.svg`; and the opaque `apple-touch-icon.png` and
+`github-avatar.png`. Icons of 64 px and below omit the hairline highlight.
+Re-rendering produces identical files.

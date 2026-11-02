@@ -1,5 +1,10 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/institution/mark-dark.png" />
+  <img src="https://raw.githubusercontent.com/CTTIR/.github/main/assets/branding/institution/mark.png" alt="CTTIR" width="120" height="120" />
+</picture>
+
 # Computational Trauma and Tissue Injury Research
 
 **Reproducible computational tools, analyses, and teaching resources for trauma and tissue injury research.**
