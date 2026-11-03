@@ -1,0 +1,25 @@
+name: Shared workflow regression checks
+
+on:
+  push:
+    paths: [".github/workflows/**", "config/**", "tests/**"]
+  pull_request:
+    paths: [".github/workflows/**", "config/**", "tests/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - name: Install regression test dependencies
+        run: install.packages(c("yaml", "lintr", "covr", "xml2"))
+        shell: Rscript {0}
+      - name: Exercise shared workflow steps
+        run: Rscript --vanilla tests/test-workflows.R
