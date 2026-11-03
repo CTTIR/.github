@@ -87,3 +87,26 @@ rounded square with the shared motifs, primitives and shading; each such
 repository's `render.R` writes the artwork-only square as `hex.*` and the
 named square as `lockup.*`. Names use the installed JetBrains Mono
 ExtraBold, the closest cut to the supplied v5 hex names.
+
+## Package families added after v5
+
+Two smaller groups of R packages have their own families, so every
+subsection of the software list has a colour of its own:
+
+| Family | Label | Colour | Packages |
+|---|---|---|---|
+| `consensus` | Consensus & ideation | plum #91617B | brainwritR, delphyR |
+| `embedding` | Dimension reduction & visualisation | deep teal #146554 | songR, sorenR |
+
+`methods` (#56B4E9) is now labelled Statistical inference and holds
+inferguidR, infercalcR and infereportR. The two colours were picked from a
+grid of mid-lightness HCL colours for the largest CIEDE2000 distance to every
+other family colour, including core gold and apps wine, under normal vision
+and simulated deuteranopia, protanopia and tritanopia. Their closest
+neighbour stays 11.5 apart, a little more than the closest pair of the
+original Okabe-Ito families (simulation and omics, 11.1).
+
+The approved hexmakR masters of these packages are drawn in their former
+family, so their `render.R` recolours the master: the bundled renderer
+redraws the same elements in the new family and its colours replace the
+master's one by one, keeping the supplied name outlines.
