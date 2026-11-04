@@ -13,6 +13,10 @@ on:
         description: "Compatibility input; pak resolves Bioconductor dependencies automatically."
         type: boolean
         default: false
+      old-r-extra-packages:
+        description: "Explicit compatible dependency versions for the oldrel-3 row. Other rows resolve current releases."
+        type: string
+        default: ""
       macos-xquartz:
         description: "Install XQuartz for macOS packages requiring X11 libraries."
         type: boolean
@@ -128,10 +132,16 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         if: steps.rmin.outputs.supported == 'true'
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            any::rcmdcheck
+            txdbmaker=?ignore-before-r=4.4.0
+            anndataR=?ignore-before-r=4.5.0
+            ${{ matrix.config.r == 'oldrel-3' && inputs.old-r-extra-packages || '' }}
           needs: check
-          # Keep dependency failures blocking. pak resolves declared Suggests,
-          # including Bioconductor packages, for the R version in this row.
+          # These two optional integrations did not exist in the Bioconductor
+          # releases paired with older R. Their tests remain enabled wherever
+          # the packages exist; hard dependency failures remain blocking.
+          # Resolve every other declared Suggests normally.
           dependencies: '"all"'
 
       - uses: r-lib/actions/check-r-package@v2
