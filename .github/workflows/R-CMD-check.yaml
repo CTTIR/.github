@@ -63,6 +63,7 @@ jobs:
           - {os: ubuntu-latest,  r: 'oldrel-3', experimental: true, bioc-mirror: 'https://bioconductor.org'}
 
     env:
+      R_DEFAULT_INTERNET_TIMEOUT: "300"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
       _R_CHECK_FORCE_SUGGESTS_: false

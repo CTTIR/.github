@@ -31,6 +31,7 @@ jobs:
   test-coverage:
     runs-on: ubuntu-latest
     env:
+      R_DEFAULT_INTERNET_TIMEOUT: "300"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       NOT_CRAN: true
       # Lifted into env so a step-level `if` can test it; secrets are not
